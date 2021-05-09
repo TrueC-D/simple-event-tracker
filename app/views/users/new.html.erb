@@ -1,0 +1,22 @@
+<h2> Create User </h2>
+
+<body>
+<%= form_for @user do |f| %>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+    <br>
+    <%= f.label :username %>
+    <%= f.text_field :username %>
+    <br>
+    <%= f.label :password %>
+    <%= f.password_field :password %>
+    <br>
+    <%= f.submit 'Create User'%>
+<% end %>
+
+</body>
+
+<br>
+<h3> OR </h3>
+<br>
+<h3> <%= link_to('Log in with Facebook!', '/auth/facebook', method: :post) %> </h3>

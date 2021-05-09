@@ -1,0 +1,26 @@
+# Welcome to the Simple Event Tracker!
+# You can log in via our log in portal or through facebook.
+
+# Log in portal link
+# sign in here 
+# links to user log in 
+
+# why is one document in form for and another in form tag?
+  <h2> 
+    Sign In
+  </h2>
+
+  <body>
+    <%= form_tag(signin_path) do %>
+        Username: <%= text_field_tag :'username' %>
+        <br>
+        Password: <%= password_field_tag :'password', nil, class: 'masked_input_field' %>
+        <br>
+        <%= submit_tag 'Sign In' %>
+        <br>
+    <% end %>
+  </body>
+  <br>
+  <h3> OR </h3>
+  <br>
+<h3> <%= link_to('Log in with Facebook!', '/auth/facebook', method: :post) %> </h3>

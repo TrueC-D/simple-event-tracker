@@ -1,0 +1,2 @@
+<a class = 'navbar-btns' href = "<%= user_path(session[:user_id])%>"/> <%= current_user.name %>'s Events </a>
+<%= link_to 'Log Out', logout_path, method: 'delete', class: 'navbar-btns' %>
