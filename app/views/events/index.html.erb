@@ -1,7 +1,7 @@
 <h2>Upcoming Events</h2>
 
 <% if admin? %>
-  <%= button_to "Add New Event", new_event_path %>
+  <%= button_to "Add New Event", new_event_path, :method => 'get' %>
   <br> 
 <% end %>
 
@@ -19,7 +19,6 @@
 
 <ol>
 <% @events.each do |e|%>
-    <% binding.pry %>
     <% if e.datetime < DateTime.now%>
         <li><%= link_to "#{e.name} - #{e.category} - #{e.datetime}", event_path(e) %></li>
     <% end %>

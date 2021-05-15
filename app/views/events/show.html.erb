@@ -1,9 +1,10 @@
 <h2> <%= @event.name %></h2>
 <br>
-Category: <%= @event.category%>
+Category: <%= @event.category.name%>
 <br>
 Sheduled For: <%=@event.datetime %>
 <br>
 <%= @event.description%>
+<br>
 <br>
 <%= custom_show_form %>

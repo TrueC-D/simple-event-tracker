@@ -6,8 +6,7 @@ class EventsController < ApplicationController
     def show
         # check if logged in & if user exists
         find_event
-        @event = Event.find_by(id: params[:id])
-        @at_event = AttendingEvent.new
+        @at_events = AttendingEvent.find_by(event_id: params[:id])        
     end
 
     def new
@@ -19,7 +18,12 @@ class EventsController < ApplicationController
         # sessions controller needed -> check session for user id.
         # check if valid before create
         # valid should check if the params are blank or not, and they should only permit certain keys (key restriction is specified in user params)
+        # params[:datetime] = DateTime.new(params[:'datetime(1i)'], params[:'datetime(2i)'], params[:'datetime(3i)'], params[:'datetime(4i)'], params[:'datetime(5i)'])
+        arr = [1,2,3,4,5]
+        i= arr.map{|number| params[:event][:"datetime(#{number}i)"].to_i }
+        params[:event][:datetime] = DateTime.new(i[0], i[1], i[2], i[3], i[4])
         @event = Event.create(event_params)
+        redirect_to event_path(@event)
     end
 
     def edit
@@ -47,13 +51,15 @@ class EventsController < ApplicationController
         # if destroyed, also deletes the associated attending events
     end
 
-    def find_event
-        @event = Event.find(id: params[:id])
-    end
+   
 
     private
 
+    def find_event
+        @event = Event.find(params[:id])
+    end
+
     def event_params
-        params.require(:event).permit(:name, :description,:category_id)
+        params.require(:event).permit(:name, :description, :category_id, :datetime)
     end
 end

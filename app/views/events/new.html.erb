@@ -1,0 +1,17 @@
+<h2> Create Event</h2>
+<br>
+<%= form_for @event do |f| %>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+    <br>
+    <%= f.label :description %>
+    <%= f.text_field :description %>
+    <br>
+    Event Date:
+    <%= f.datetime_select :datetime, ampm: true %>
+    <br>
+    Event Category:
+    <%= f.collection_select :category_id, Category.all, :id, :name %>
+    <br>
+    <%= f.submit 'Create Event'%>
+<% end %>
