@@ -1,10 +1,11 @@
 Rails.application.routes.draw do
   resources :statuses
-  resources :attending_events
-  resources :attendings
-  resources :events
   resources :categories
   resources :users
+  resources :events do 
+    resources :attending_events
+  end
+
   get 'signin', to: 'sessions#new'
   post 'signin', to: 'sessions#create'
   delete 'logout', to: 'sessions#destroy'

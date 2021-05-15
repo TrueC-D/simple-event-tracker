@@ -1,2 +1,3 @@
-<a class = 'navbar-btns' href = "<%= user_path(session[:user_id])%>"/> Home </a>
-<%= link_to 'Log Out', logout_path, method: 'delete', class: 'navbar-btns' %>
+
+<%= link_to "Home", user_path(current_user)%> &nbsp;
+<%= link_to 'Log Out', logout_path, method: 'delete', class: 'navbar-btns' %>&nbsp;

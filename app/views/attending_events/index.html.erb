@@ -2,17 +2,25 @@
 <br>
 Search By Event:
 <br>
-<%= form_tag attending_events_path, :method => :get do  %>
+<% form_tag attending_events_path, :method => :get do  %>
     <%= collection_select :event, :event_id, Event.all, :id, :name %>
     <button type= 'submit' class='btn'> Search </button>
-<%= end %>
+<% end %>
 <br>
 <br>
 
-<%="#{@event.name}'s Attendee List"%>
-<ol>
-<%= @at_events.each do |attendee| %>
-    <li><%="#{attendee.user_id.name}" %>
-    <%= button_to 'x', attendee, :method => :delete %></li>
-<%= end %>
-</ol>
+<% if @event %>
+  <%="#{@event.name}'s Attendee List"%>
+  <ol>
+  <% @at_events.each do |attendee| %>
+    <% this_user = User.find_by(id: attendee.user_id)%>
+    <li>
+      <%="Name: #{this_user.name}, Username: #{this_user.id}" %>
+      <% if @event.datetime > DateTime.now %>
+        <%= button_to 'x', attendee, :method => :delete %>
+      <% end %>
+    </li>
+  <% end %>
+  </ol>
+<% end %>
+
