@@ -6,6 +6,8 @@ class EventsController < ApplicationController
     def show
         # check if logged in & if user exists
         find_event
+        @event = Event.find_by(id: params[:id])
+        @at_event = AttendingEvent.new
     end
 
     def new

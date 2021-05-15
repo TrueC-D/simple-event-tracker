@@ -10,14 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_04_141638) do
+ActiveRecord::Schema.define(version: 2021_05_14_011504) do
 
   create_table "attending_events", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "event_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "status_id", null: false
     t.index ["event_id"], name: "index_attending_events_on_event_id"
+    t.index ["status_id"], name: "index_attending_events_on_status_id"
     t.index ["user_id"], name: "index_attending_events_on_user_id"
   end
 
@@ -34,7 +36,14 @@ ActiveRecord::Schema.define(version: 2021_05_04_141638) do
     t.integer "category_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.datetime "datetime"
     t.index ["category_id"], name: "index_events_on_category_id"
+  end
+
+  create_table "statuses", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -47,6 +56,7 @@ ActiveRecord::Schema.define(version: 2021_05_04_141638) do
   end
 
   add_foreign_key "attending_events", "events"
+  add_foreign_key "attending_events", "statuses"
   add_foreign_key "attending_events", "users"
   add_foreign_key "events", "categories"
 end

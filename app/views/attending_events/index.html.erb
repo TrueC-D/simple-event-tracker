@@ -1,0 +1,18 @@
+<h2>Attendees</h2>
+<br>
+Search By Event:
+<br>
+<%= form_tag attending_events_path, :method => :get do  %>
+    <%= collection_select :event, :event_id, Event.all, :id, :name %>
+    <button type= 'submit' class='btn'> Search </button>
+<%= end %>
+<br>
+<br>
+
+<%="#{@event.name}'s Attendee List"%>
+<ol>
+<%= @at_events.each do |attendee| %>
+    <li><%="#{attendee.user_id.name}" %>
+    <%= button_to 'x', attendee, :method => :delete %></li>
+<%= end %>
+</ol>

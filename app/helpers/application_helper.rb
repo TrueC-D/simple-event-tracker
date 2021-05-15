@@ -20,7 +20,7 @@ module ApplicationHelper
     end
 
     def custom_buttons
-        if logged_in?
+        if !!logged_in?
             render 'layouts/nav_bar_in_session'
         else
             render 'layouts/nav_bar_out_session'
@@ -29,7 +29,20 @@ module ApplicationHelper
 
     def admin_buttons?
         if admin?
-            render 'layouts/nav_bar_armin'
+            render 'layouts/nav_bar_admin'
         end
+    end
+
+    def not_admin_error
+    end
+
+    def not_logged_in_error
+    end
+
+    def not_correct_user_error
+    end
+
+    def failed_to_authenticate
+        flash.alert = "Failed to Authenticate."
     end
 end

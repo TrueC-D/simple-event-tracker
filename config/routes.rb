@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :statuses
   resources :attending_events
   resources :attendings
   resources :events

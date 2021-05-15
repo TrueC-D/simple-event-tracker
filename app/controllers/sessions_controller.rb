@@ -1,17 +1,26 @@
 class SessionsController < ApplicationController
+    # skip_before_action :verify_authenticity_token, only: :create
+    
     def new
+        # if logged in, redirect to user_path(current_user)
     end
 
     def create
-        if auth['uid']
-            @user = User.find_or_create_by(uid: auth['uid']) do |u|
+        # if logged in, redirect to user_path(current_user)
+        if auth
+            binding.pry
+            @user = User.find_or_create_by(id: auth['uid']) do |u|
                 u.name = auth['info']['name']
                 session_setup
             end
-        elsif @user = User.find(params[:user][:username])
+        elsif params
+            @user = User.find_by(username: params[:username])
             if @user && @user.authenticate(params[:password])
                 session_setup
+            else
                 # error, credentials did not match.
+                redirect_to signin_path
+                flash[:alert] = "Failed to Authenticate"
             end
 
         else

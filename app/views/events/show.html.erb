@@ -1,0 +1,9 @@
+<h2> <%= @event.name %></h2>
+<br>
+Category: <%= @event.category%>
+<br>
+Sheduled For: <%=@event.datetime %>
+<br>
+<%= @event.description%>
+<br>
+<%= render 'events/new_attendees'%>

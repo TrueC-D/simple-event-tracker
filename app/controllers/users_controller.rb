@@ -1,5 +1,4 @@
 class UsersController < ApplicationController
-
     def new
         @user = User.new
     end
@@ -7,7 +6,7 @@ class UsersController < ApplicationController
     def create
         # check if valid before create
         # valid should check if the params are blank or not, and they should only permit certain keys (key restriction is specified in user params)
-        @user = User.create(user_params)
+        @user = User.new(user_params)
         if params[:user][:password]
             if @user.save
                 session[:user_id] = @user.id
@@ -65,12 +64,17 @@ class UsersController < ApplicationController
     end
 
     def find_user
-        @user = User.find(id: params[:id])
+        @user = User.find_by(id: params[:id])
     end
 
     private
 
     def user_params
         params.require(:user).permit(:name, :username, :admin, :password)
+        # if params[username]
+        #     params.require(:user).permit(:name, :username, :admin, :password)
+        # elsif auth[:uid]
+        #     auth.permit(:uid, :name)
+        # end
     end
 end

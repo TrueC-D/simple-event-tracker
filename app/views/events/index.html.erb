@@ -1,0 +1,8 @@
+<h2>Upcoming Events</h2>
+
+<% @events.each do |e|%>
+    <% binding.pry %>
+    <% if e.datetime > DateTime.now%>
+        <li><%= link_to "#{e.name} - #{e.category} - #{e.datetime}", event_path(e) %></li>
+    <% end %>
+<% end %>
