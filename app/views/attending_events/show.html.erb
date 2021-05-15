@@ -8,12 +8,13 @@ Category: <%= @event.category.name %> - <% @event.category.description %>
 <br>
 Description: <%= @event.description %>
 
+<% 
 <%= button_to 'Cancel Booking', @at_event, :method => :delete %>
 
 
 
 
 <%=link_to "Name: #{this_user.name}, Username: #{this_user.id}, Status: #{Status.find(attendee.status_id).name}}", event_attending_event_path(attendee) %>
-      <% if @event.datetime > DateTime.now %>
+      <% if future_date? %>
         <%= button_to 'x', attendee, :method => :delete %>
       <% end %>

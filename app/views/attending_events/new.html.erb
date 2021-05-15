@@ -1,7 +1,9 @@
+<h2> <%= @event.name %> Sign Up</h2>
+<br>
 <%= form_for @at_event do |f| %>
     <%= f.collection_select :status_id, Status.all, :id, :name %>
     <br>
-    <%= f.hidden_field :user_id, :value => session[:user_id] %>
+    <%= f.hidden_field :user_id, :value => current_user %>
     <%= f.hidden_field :event_id, :value => @event.id%>
     <%= f.submit 'Join Event'%>
 <% end %>
