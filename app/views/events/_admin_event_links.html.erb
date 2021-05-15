@@ -1,2 +1,3 @@
-<%= link_to 'Delete Event', events_path, method: 'delete' %> &nbsp;
-<%= link_to 'Edit Event', edit_event_path(@event), method: 'get' %> &nbsp;
+<%= button_to 'Delete Event', events_path, method: 'delete' %> &nbsp;
+<%= button_to 'Edit Event', edit_event_path(@event), method: 'get' %> &nbsp;
+<%= button_to 'View Attendees', event_attending_events_path(@event) %> &nbsp;

@@ -6,10 +6,12 @@ class AttendingEventsController < ApplicationController
         else 
             @at_event = AttendingEvent.all
         end
+        # necessary
     end
 
     def show
-        @at_event = AttendingEvent.find(params[:id])
+        find_ticket
+        @user = User.find(@at_event.user_id)
         parent_event
         # necessary
     end
@@ -29,7 +31,7 @@ class AttendingEventsController < ApplicationController
 
     def destroy
         # if admin == true or if @at_event.user_id == session id
-        @at_event = AttendingEvent.find(id: params[:id])
+        find_ticket
         @at_event.destroy
     end
 
@@ -37,6 +39,10 @@ class AttendingEventsController < ApplicationController
 
     def parent_event
         @event = Event.find(params[:event_id])
+    end
+
+    def find_ticket
+        @at_event = AttendingEvent.find(id: params[:id])
     end
 
     def at_event_params
