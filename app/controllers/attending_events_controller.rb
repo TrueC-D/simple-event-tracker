@@ -25,9 +25,17 @@ class AttendingEventsController < ApplicationController
 
     def create
         # if @at_event.user_id == session id.  Admin should not be able to create instance but can destroy it.
-        @at_event = AttendingEvent.create(at_event_params)
+        @at_event = AttendingEvent.new(at_event_params)
         @event = Event.find(params[:event_id])
-        redirect_to event_attending_event_path(@event, @at_event)
+        if @at_event.valid?
+            @at_event.save
+            redirect_to event_attending_event_path(@event, @at_event)
+        else 
+            flash[:errors] = @at_event.errors.full_messages
+            redirect_to new_event_attending_event_path(@event)
+            # tested validation with the following code in console:
+            # document.getElementById('attending_event_status_id').value = 0
+        end
     end
 
 
