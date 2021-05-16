@@ -1,6 +1,12 @@
 module EventsHelper
+    
     def future_date?
-        @event.datetime > DateTime.now
+        if @event.datetime > DateTime.now
+           return true
+        else
+           return false
+        end
+        
     end
 
     def custom_show_form
@@ -8,7 +14,7 @@ module EventsHelper
             if admin?
                 render 'events/admin_event_links'
             else
-                
+                if @at_event
                 attending = @event.attending_events.find(user_id: current_user)
                 if attending
                     button_to 'Cancel Booking', event_attending_event_path(@event, attending), method: 'delete'

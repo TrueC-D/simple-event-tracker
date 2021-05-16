@@ -3,7 +3,7 @@ module UsersHelper
         if admin?
             render 'users/admin_show'
         else
-            render 'layouts/reg_show'
+            render 'users/reg_show'
         end
     end
     

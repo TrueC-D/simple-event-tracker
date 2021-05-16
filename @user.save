@@ -1,0 +1,29 @@
+
+[1mFrom:[0m /mnt/c/Users/aleth/dev/flatiron/labs/module_13_rails/section_14_rails_project_mode/rails_project/simple-event-tracker/app/controllers/sessions_controller.rb:17 SessionsController#create:
+
+     [1;34m9[0m: [32mdef[0m [1;34mcreate[0m
+    [1;34m10[0m:     [1;34m# if logged in, redirect to user_path(current_user)[0m
+    [1;34m11[0m:     [32mif[0m auth
+    [1;34m12[0m:         @user = [1;34;4mUser[0m.find_or_create_by([35mid[0m: auth[[31m[1;31m'[0m[31muid[1;31m'[0m[31m[0m]) [32mdo[0m |u|
+    [1;34m13[0m:             u.name = auth[[31m[1;31m'[0m[31minfo[1;31m'[0m[31m[0m][[31m[1;31m'[0m[31mname[1;31m'[0m[31m[0m]
+    [1;34m14[0m:             u.username = auth[[31m[1;31m'[0m[31minfo[1;31m'[0m[31m[0m][[31m[1;31m'[0m[31memail[1;31m'[0m[31m[0m]
+    [1;34m15[0m:             u.password = [1;34;4mSecureRandom[0m.random_bytes([1;34m15[0m)
+    [1;34m16[0m:         [32mend[0m
+ => [1;34m17[0m:         binding.pry
+    [1;34m18[0m:         @user.save!
+    [1;34m19[0m:         session_setup 
+    [1;34m20[0m:     [32melsif[0m params
+    [1;34m21[0m:         @user = [1;34;4mUser[0m.find_by([35musername[0m: params[[33m:username[0m])
+    [1;34m22[0m:         [32mif[0m @user && @user.authenticate(params[[33m:password[0m])
+    [1;34m23[0m:             session_setup
+    [1;34m24[0m:         [32melse[0m
+    [1;34m25[0m:             [1;34m# error, credentials did not match.[0m
+    [1;34m26[0m:             redirect_to signin_path
+    [1;34m27[0m:             flash[[33m:alert[0m] = [31m[1;31m"[0m[31mFailed to Authenticate[1;31m"[0m[31m[0m
+    [1;34m28[0m:         [32mend[0m
+    [1;34m29[0m: 
+    [1;34m30[0m:     [32melse[0m
+    [1;34m31[0m:         redirect_to signin_path
+    [1;34m32[0m:     [32mend[0m
+    [1;34m33[0m: [32mend[0m
+

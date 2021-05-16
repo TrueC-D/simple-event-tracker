@@ -1,4 +1,8 @@
 class AttendingEvent < ApplicationRecord
+  validates :user_id, :event_id, :status_id, presence: true
+
+  scope :this_event, -> {where(event_id: @event.id)} 
+  
   belongs_to :user
   belongs_to :event
   belongs_to :status

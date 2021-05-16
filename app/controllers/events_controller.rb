@@ -1,4 +1,5 @@
 class EventsController < ApplicationController
+    helper EventsHelper
     def index
         @events = Event.all
     end
@@ -6,7 +7,7 @@ class EventsController < ApplicationController
     def show
         # check if logged in & if user exists
         find_event
-        @at_events = AttendingEvent.find_by(event_id: params[:id])        
+        @at_events = AttendingEvent.where(event_id: params[:id])        
     end
 
     def new
@@ -43,17 +44,32 @@ class EventsController < ApplicationController
 
     def destroy
         find_event
+        if future_date?
+            @event.destroy
+            redirect_to events_path
+        else
+            flash[:error] = "Could not delete #{@event.name}"
+            redirect_to event_path(@event)
+        end
          # sessions controller needed -> check session for user id.
         # check if admin
         # check if valid
         # can only destroy if event is not in the past
-        @event.destroy
         # if destroyed, also deletes the associated attending events
     end
 
    
 
     private
+
+    def future_date?
+        if @event.datetime > DateTime.now
+           return true
+        else
+           return false
+        end
+        
+    end#
 
     def find_event
         @event = Event.find(params[:id])

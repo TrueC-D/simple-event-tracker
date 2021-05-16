@@ -1,4 +1,7 @@
 class Event < ApplicationRecord
+  validates :name, :datetime, :category_id, presence: true
+  
+
   default_scope {order('datetime DESC') }
 
 
