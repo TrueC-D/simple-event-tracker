@@ -7,19 +7,29 @@ class UsersController < ApplicationController
         # check if valid before create
         # valid should check if the params are blank or not, and they should only permit certain keys (key restriction is specified in user params)
         @user = User.new(user_params)
-        if params[:user][:password]
-            if @user.save
-                session[:user_id] = @user.id
-                redirect_to user_path(session[:user_id])
-            else
-                redirect_to controller: 'users', action: 'new'
-                # there was an error processing your request
-            end
 
+        if @user.valid?
+            @user.save
+            session[:user_id] = @user.id
+            redirect_to user_path(session[:user_id])
         else
+            flash[:errors] =  @user.errors.full_messages
             redirect_to controlller: 'users', action: 'new'
-            # Error: password and/or username is invalid
         end
+        
+        # if params[:user][:password]
+        #     if @user.save
+        #         session[:user_id] = @user.id
+        #         redirect_to user_path(session[:user_id])
+        #     else
+        #         redirect_to controller: 'users', action: 'new'
+        #         # there was an error processing your request
+        #     end
+
+        # else
+        #     redirect_to controlller: 'users', action: 'new'
+        #     # Error: password and/or username is invalid
+        # end
     end
 
     def show

@@ -1,5 +1,12 @@
 <h2> Create User </h2>
 
+<% flash[:errors].each do |msg| %>
+    <div class="alert">
+      Error: <%= msg %>
+    </div>
+    <br>
+  <% end %>
+
 <body>
 <%= form_for @user do |f| %>
     <%= f.label :name %>
