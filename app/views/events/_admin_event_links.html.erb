@@ -1,5 +1,5 @@
 <%= link_to 'Delete Event', event_path(@event), method: 'delete' %> &nbsp;
 <%= link_to 'Edit Event', edit_event_path(@event), method: 'get' %> &nbsp;
-<% if @at_events %>
+<% if @at_events.any? %>
   <%= link_to 'View Attendees', event_attending_events_path(@event) %> &nbsp;
 <% end %>

@@ -14,12 +14,10 @@ module EventsHelper
             if admin?
                 render 'events/admin_event_links'
             else
-                if @at_event
-                attending = @event.attending_events.find(user_id: current_user)
-                if attending
-                    button_to 'Cancel Booking', event_attending_event_path(@event, attending), method: 'delete'
+                if @attending
+                    button_to 'Cancel Booking', event_attending_event_path(@event, @attending), method: 'delete'
                 else
-                    button_to "Create Booking", event_attending_events_path(@event)
+                    button_to "Create Booking", new_event_attending_event_path(@event), method: 'get'
                 end
             end
         else

@@ -8,9 +8,9 @@
   <ol>
   <% @at_events.each do |attendee| %>
       <li>
-      <%=link_to "Name: #{attendee.user.name}, User ID: #{attendee.user_id}, Status: #{attendee.status.name}}", event_attending_event_path(@event, attendee) %>
+      <%=link_to "Name: #{attendee.user.name}, User ID: #{attendee.user_id}, Status: #{attendee.status.name}", event_attending_event_path(@event, attendee) %>
       <% if future_date? %>
-        <%= button_to 'x', attendee, :method => :delete %>
+        <%= button_to 'x', [@event, attendee], :method => :delete %>
       <% end %>
     </li>
   <% end %>

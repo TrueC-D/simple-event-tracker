@@ -1,7 +1,7 @@
 <h2> <%=@user.name%>'s Events</h2>
 <ol>
 <% @user.events.each do |e|%>
-    <li><%= link_to "#{e.name} - #{e.category} - #{e.datetime}", event_path(e) %> <%= button_to %></li>
+    <li><%= link_to "#{e.name} - #{e.category.name} - #{e.datetime}", event_path(e) %> <%= button_to 'x', [e, AttendingEvent.find_by(user_id: @user.id, event_id: e.id)], method: :delete %></li>
 <% end %>
 </ol>
 

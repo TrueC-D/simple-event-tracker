@@ -1,11 +1,12 @@
 <h2> <%=@at_event.status.name %> Pass for <%= @user.name%></h2>
-<br>
+<br><br>
 Event: <%= @event.name %>
-<br>
+<br><br>
 Date: <%= @event.datetime %>
-<br>
+<br><br>
 Category: <%= @event.category.name %> - <% @event.category.description %>
-<br>
+<br><br>
 Description: <%= @event.description %>
+<br>
 
-<%= button_to 'Cancel Booking', @at_event, :method => :delete %>
+<%= button_to 'Cancel Booking', [@event, @at_event], :method => :delete %>
