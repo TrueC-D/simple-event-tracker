@@ -6,9 +6,11 @@
     </div>
     <br>
   <% end %>
-  
+
 <br>
 <%= form_for [@event, @at_event] do |f| %>
+    <%=f.label :expectation %>
+    <%=f.text_field :expectation %>
     <%= f.collection_select :status_id, Status.all, :id, :name %>
     <br>
     <%= f.hidden_field :user_id, :value => current_user.id %>

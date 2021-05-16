@@ -62,6 +62,6 @@ class AttendingEventsController < ApplicationController
     end
 
     def at_event_params
-        params.require(:attending_event).permit(:user_id, :event_id, :status_id)
+        params.require(:attending_event).permit(:user_id, :event_id, :status_id, :expectation)
     end 
 end

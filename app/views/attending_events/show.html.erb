@@ -7,6 +7,8 @@ Date: <%= @event.datetime %>
 Category: <%= @event.category.name %> - <% @event.category.description %>
 <br><br>
 Description: <%= @event.description %>
-<br>
+<br><br>
+Expectation: <%= @at_event.expectation %>
+<br><br>
 
 <%= button_to 'Cancel Booking', [@event, @at_event], :method => :delete %>
