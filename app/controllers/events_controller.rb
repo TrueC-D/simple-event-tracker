@@ -59,7 +59,7 @@ class EventsController < ApplicationController
                 redirect_to event_path(@event)
             else
                 flash[:errors] =  @event.errors.full_messages
-                render edit_event_path(@event)
+                render controller: 'events', action: 'edit' , id: @event.id
             end
         else
             flash[:errors] = 'Must be admin to create or update event.'
