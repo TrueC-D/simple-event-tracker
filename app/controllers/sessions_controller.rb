@@ -20,7 +20,7 @@ class SessionsController < ApplicationController
                 session_setup
             else
                 # error, credentials did not match.
-                redirect_to signin_path
+                render signin_path
                 flash[:alert] = "Failed to Authenticate"
             end
 

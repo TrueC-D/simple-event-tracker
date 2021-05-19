@@ -24,8 +24,23 @@ class EventsController < ApplicationController
         arr = [1,2,3,4,5]
         i= arr.map{|number| params[:event][:"datetime(#{number}i)"].to_i }
         params[:event][:datetime] = DateTime.new(i[0], i[1], i[2], i[3], i[4])
-        @event = Event.create(event_params)
-        redirect_to event_path(@event)
+        @event = Event.new(event_params)
+        if @event.valid?
+            user
+            if @user.admin
+                @event.save
+                redirect_to event_path(@event)
+            else
+                flash[:errors] = 'Must be admin to create or update event.'
+                render events_path
+            end
+            
+        else
+            flash[:errors] =  @event.errors.full_messages
+            render new_event_path
+        end
+        # @event = Event.create(event_params)
+        # redirect_to event_path(@event)
     end
 
     def edit
@@ -36,11 +51,28 @@ class EventsController < ApplicationController
 
     def update
         find_event
+        user
+        if @user.admin
+            @event.assign_attributes(event_params)
+            if @event.valid?
+                @event.save
+                redirect_to event_path(@event)
+            else
+                flash[:errors] =  @event.errors.full_messages
+                render edit_event_path
+            end
+        else
+            flash[:errors] = 'Must be admin to create or update event.'
+            redirect_to event_path(@event)
+        end
+
+       
          # sessions controller needed -> check session for user id.
         # check if admin
         # check if valid
-        @event.update(event_params)
-        redirect_to event_path(@event)
+        # @event.update(event_params)
+        # redirect_to event_path(@event)
+        @event.
     end
 
     def destroy
@@ -62,6 +94,10 @@ class EventsController < ApplicationController
    
 
     private
+
+    def user
+        @user = User.find(session[:user_id])
+    end
 
     def future_date?
         if @event.datetime > DateTime.now
