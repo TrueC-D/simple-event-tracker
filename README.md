@@ -1,28 +1,23 @@
 
 
-Has an admin who can create events and keep track of participants. A user can add events to their agenda.   They should be able to filter their events to exclude past events and order events chronologically.  There are categories that events can belong to which can help the user identify whether the event would be of interest.  Ex: Category could be Music: Rap, or Literature: Science Fiction, etc.
+Has an admin who can create events and keep track of participants. A user can add and remove events on their agenda.   They should be able to filter their events to exclude past events and order events chronologically.  There are categories that events can belong to which can help the user identify whether the event would be of interest.  Ex: Category could be Music: Rap, or Literature: Science Fiction, etc.  Users also have tickets which belongs to a status (standard, premium, vip) and has an optional expectations string that the user can enter.
 
-# README
+Can load this app by running rails s then navigatio to localhost:3000/signin
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+The following is seeded to the database before load: 
 
-Things you may want to cover:
+<!-- admin = User.create([
+    {name: 'Admin', username: 'username', password: 'password', admin: true }
+]) -->  Alter Admin information to your preference.
 
-* Ruby version
+statuses = Status.create([
+    {name: 'Standard'}, {name: 'Premium'}, {name: 'VIP'}
+])
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+categories = Category.create([
+    {name: 'Entertainment & Art', description: 'This includes music, movies, painting, dance, comedy, etc.'},
+    {name: 'Science & Innovation', description: 'New scientific discoveries and engineering innovation and marvels.'},
+    {name: 'Psychology, History and Social Change', description: 'What is, what was and what will be.  Discussing the nature of people and their envirement. Here we learn how we have been influenced and how we can be influenced. This section includes politics.'},
+    {name: 'Health & Personal Growth', description: 'Exploring the path to mental and physical well-being.'},
+    {name: 'Participatory', description: 'Requireing atendee participation. This is often educational.'}
+])

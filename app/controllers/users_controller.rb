@@ -4,8 +4,6 @@ class UsersController < ApplicationController
     end
 
     def create
-        # check if valid before create
-        # valid should check if the params are blank or not, and they should only permit certain keys (key restriction is specified in user params)
         @user = User.new(user_params)
 
         if @user.valid?
@@ -27,44 +25,45 @@ class UsersController < ApplicationController
         end
     end
 
-    def edit
-        current_user = session[:user_id]
-        if current_user
-            if params[:id] == current_user
-                find_user
-            else
-                # error, you do not have access to this page
-                redirect_to user_path(current_user)
-            end
-            # error, you must sign in to access this page
-            render signin_path
+    # def edit
+    #     current_user = session[:user_id]
+    #     if current_user
+    #         if params[:id] == current_user
+    #             find_user
+    #         else
+    #             # error, you do not have access to this page
+    #             redirect_to user_path(current_user)
+    #         end
+    #         # error, you must sign in to access this page
+    #         render signin_path
                 
-        end
-        # can create method for the above code as it will need to be repeated
-        # check if logged in & if user exists
-    end
+    #     end
+    #     # can create method for the above code as it will need to be repeated
+    #     # check if logged in & if user exists
+    # end
 
-    def update
-        find_user
-        # check if logged in & if user exists
-        # check if valid
-        @user.update(user_params)
-        redirect_to user_path(@user)
-    end
+    # def update
+    #     find_user
+    #     # check if logged in & if user exists
+    #     # check if valid
+    #     @user.update(user_params)
+    #     redirect_to user_path(@user)
+    # end
 
     def destroy
         find_user
         # check if logged in & if user exists
-        # check if valid
         @user.destroy
         # also destorys all attending events that contains the user_id
     end
 
+    
+
+    private
+
     def find_user
         @user = User.find_by(id: params[:id])
     end
-
-    private
 
     def user_params
         params.require(:user).permit(:name, :username, :admin, :password)

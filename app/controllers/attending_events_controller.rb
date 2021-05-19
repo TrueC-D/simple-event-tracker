@@ -1,31 +1,23 @@
 class AttendingEventsController < ApplicationController
     def index
-        # if params[:event_id]
-            parent_event
-            @at_events = @event.attending_events
-        # else 
-            # @at_event = AttendingEvent.all
-        # end
-        # necessary
+        parent_event
+        @at_events = @event.attending_events
     end
 
     def show
         find_ticket
         @user = User.find(@at_event.user_id)
         parent_event
-        # necessary
     end
 
     def new
         @at_event = AttendingEvent.new
         parent_event
-        @user = current_user
-        # necessary
-        
+        @user = current_user        
     end
 
     def create
-        # if @at_event.user_id == session id.  Admin should not be able to create instance but can destroy it.
+        # if @at_event.user_id == session id.  Admin should not be able to create instance but can destroy it. -> edit: maybe i don't care so much about this, won't include
         @at_event = AttendingEvent.new(at_event_params)
         @event = Event.find(params[:event_id])
         if @at_event.valid?
