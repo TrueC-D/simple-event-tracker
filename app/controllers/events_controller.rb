@@ -59,7 +59,7 @@ class EventsController < ApplicationController
                 redirect_to event_path(@event)
             else
                 flash[:errors] =  @event.errors.full_messages
-                render edit_event_path
+                render edit_event_path(@event)
             end
         else
             flash[:errors] = 'Must be admin to create or update event.'
@@ -72,7 +72,6 @@ class EventsController < ApplicationController
         # check if valid
         # @event.update(event_params)
         # redirect_to event_path(@event)
-        @event.
     end
 
     def destroy

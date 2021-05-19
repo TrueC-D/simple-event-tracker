@@ -6,8 +6,19 @@ module EventsHelper
         else
            return false
         end
-        
+        # this method may not be needed -> doesn't work in controllers?
     end
+
+    def get_errors
+        if flash[:errors]
+            flash[:errors].each do |msg|
+                content_tag(:div, "Error: #{msg}", class: 'alert')
+                content_tag(:br)
+            end
+        end
+    end
+
+
 
     def custom_show_form
         if @event.datetime > DateTime.now
