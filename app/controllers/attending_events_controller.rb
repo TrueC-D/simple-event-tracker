@@ -21,6 +21,7 @@ class AttendingEventsController < ApplicationController
         parent_event
         @user = current_user
         # necessary
+        
     end
 
     def create
@@ -32,7 +33,7 @@ class AttendingEventsController < ApplicationController
             redirect_to event_attending_event_path(@event, @at_event)
         else 
             flash[:errors] = @at_event.errors.full_messages
-            redirect_to new_event_attending_event_path(@event)
+            render new_event_attending_event_path(@event)
             # tested validation with the following code in console:
             # document.getElementById('attending_event_status_id').value = 0
         end

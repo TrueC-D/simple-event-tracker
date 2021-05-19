@@ -14,22 +14,9 @@ class UsersController < ApplicationController
             redirect_to user_path(session[:user_id])
         else
             flash[:errors] =  @user.errors.full_messages
-            redirect_to controlller: 'users', action: 'new'
+            render controlller: 'users', action: 'new'
         end
-        
-        # if params[:user][:password]
-        #     if @user.save
-        #         session[:user_id] = @user.id
-        #         redirect_to user_path(session[:user_id])
-        #     else
-        #         redirect_to controller: 'users', action: 'new'
-        #         # there was an error processing your request
-        #     end
-
-        # else
-        #     redirect_to controlller: 'users', action: 'new'
-        #     # Error: password and/or username is invalid
-        # end
+      
     end
 
     def show

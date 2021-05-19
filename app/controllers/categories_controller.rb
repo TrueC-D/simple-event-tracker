@@ -1,63 +1,71 @@
-class CategoriesController < ApplicationController
-    # def index
-    #     sessions controller needed -> check session for user id.
-        # check if admin
-        # check if valid
-        # @categories = Category.all
-    # end
+# commented out because I don't intend to give admin controll over categories
+
+# class CategoriesController < ApplicationController
+#     # def index
+#     #     sessions controller needed -> check session for user id.
+#         # check if admin
+#         # check if valid
+#         # @categories = Category.all
+#     # end
     
-    # def show
-    #     sessions controller needed -> check session for user id.
-        # check if admin
-        # check if valid
-        # find_category
-    # end
+#     # def show
+#     #     sessions controller needed -> check session for user id.
+#         # check if admin
+#         # check if valid
+#         # find_category
+#     # end
 
 
-    def new
-        # sessions controller needed -> check session for user id.
-        # check if admin
-        # check if valid
-        @category = Category.new        
-    end
+#     def new
+#         # sessions controller needed -> check session for user id.
+#         # check if admin
+#         # check if valid
+#         @category = Category.new        
+#     end
 
-    def create
-        # sessions controller needed -> check session for user id.
-        # check if admin
-        # check if valid
-        @category = Category.create(category_params)
-    end
+#     def create
+#         # sessions controller needed -> check session for user id.
+#         # check if admin
+#         # check if valid
+#         @category = Category.create(category_params)
+#         if @category.valid?
+#             @category.save
+#         else
+#             flash[:errors] =  @user.errors.full_messages
+#             render controlller: 'users', action: 'new'
+#         end
+#     end
 
-    def edit
-        # sessions controller needed -> check session for user id.
-        # check if admin
-        # check if valid
-        find_category
-    end
+#     def edit
+#         # sessions controller needed -> check session for user id.
+#         # check if admin
+#         # check if valid
+#         find_category
+#     end
 
-    def update
-        # sessions controller needed -> check session for user id.
-        # check if admin
-        # check if valid
-        @category = Category.update(category_params)
-    end
+#     def update
+#         # sessions controller needed -> check session for user id.
+#         # check if admin
+#         # check if valid
+#         @category = Category.update(category_params)
+#     end
 
-    def destroy
-        # sessions controller needed -> check session for user id.
-        # check if admin
-        # check if valid
-        find_category
-        @category.destroy
-    end
+#     def destroy
+#         # sessions controller needed -> check session for user id.
+#         # check if admin
+#         # check if valid
+#         find_category
+#         @category.destroy
+#     end
 
-    def find_category
-        @category  = Category.find(id: params[:id])
-    end
+#     def find_category
+#         @category  = Category.find(id: params[:id])
+#     end
 
-    private
+#     private
 
-    def category_params
-        params.require(:category).permit(:name, :description)
-        # params.permit(:name, :description)
-    end
-end
+#     def category_params
+#         params.require(:category).permit(:name, :description)
+#         # params.permit(:name, :description)
+#     end
+# end
