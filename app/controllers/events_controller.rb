@@ -76,7 +76,7 @@ class EventsController < ApplicationController
 
     def destroy
         find_event
-        if future_date?
+        if @event.future_date?
             @event.destroy
             redirect_to events_path
         else
@@ -98,14 +98,14 @@ class EventsController < ApplicationController
         @user = User.find(session[:user_id])
     end
 
-    def future_date?
-        if @event.datetime > DateTime.now
-           return true
-        else
-           return false
-        end
-        
-    end#
+    # def future_date?
+    #     if @event.datetime > DateTime.now
+    #        return true
+    #     else
+    #        return false
+    #     end
+        # moved to event model
+    # end#
 
     def find_event
         @event = Event.find(params[:id])

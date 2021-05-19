@@ -8,4 +8,12 @@ class Event < ApplicationRecord
   belongs_to :category
   has_many :attending_events
   has_many :users, through: :attending_events
+
+  def future_date?
+    if @event.datetime > DateTime.now
+      return true
+    else
+      return false
+    end
+  end
 end

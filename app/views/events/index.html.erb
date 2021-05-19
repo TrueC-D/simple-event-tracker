@@ -10,9 +10,9 @@
 <br>
 <ol>
   <% unless @events.nil? %>
-    <% @events.each do |e|%>
-      <% if e.datetime > DateTime.now%>
-        <li><%= link_to "#{e.name} - #{e.category.name} - #{e.datetime}", event_path(e) %></li>
+    <% @events.each do |@event|%>
+      <% if @event.future_date?%>
+        <li><%= link_to "#{@event.name} - #{@event.category.name} - #{@event.datetime}", event_path(@event) %></li>
       <% end %>
     <% end %>
   <% end %>
@@ -22,9 +22,9 @@
 
 <ol>
   <% unless @events.nil? %>
-    <% @events.each do |e|%>
-        <% if e.datetime < DateTime.now%>
-            <li><%= link_to "#{e.name} - #{e.category.name} - #{e.datetime}", event_path(e) %></li>
+    <% @events.each do |@event|%>
+        <% if !@event.future_date?%>
+            <li><%= link_to "#{@event.name} - #{@event.category.name} - #{@event.datetime}", event_path(@event) %></li>
         <% end %>
     <% end %>
   <% end %>
