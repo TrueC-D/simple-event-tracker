@@ -2,10 +2,11 @@ module EventsHelper
 
     def link_to_events(events)
         unless events.nil? 
-            events.each do |e|
-                content_tag(:li) do
-                    link_to "#{e.name} - #{e.category.name} - #{e.datetime}", event_path(e)
-                end
+          events.each do |e|
+              concat content_tag(:li, link_to("#{e.name} - #{e.category.name} - #{e.datetime}", event_path(e)))
+                #  concat link_to( "#{e.name} - #{e.category.name} - #{e.datetime}", event_path(e))
+                # end
+              concat content_tag(:br)
             end
         end
 
