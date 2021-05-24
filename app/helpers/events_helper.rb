@@ -1,13 +1,16 @@
 module EventsHelper
-    
-    def future_date?
-        if @event.datetime > DateTime.now
-           return true
-        else
-           return false
+
+    def link_to_events(events)
+        unless events.nil? 
+            events.each do |e|
+                content_tag(:li) do
+                    link_to "#{e.name} - #{e.category.name} - #{e.datetime}", event_path(e)
+                end
+            end
         end
-        # this method may not be needed -> doesn't work in controllers?
+
     end
+
 
     def get_errors
         if flash[:errors]

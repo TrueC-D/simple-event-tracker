@@ -9,23 +9,11 @@
 
 <br>
 <ol>
-  <% unless @events.nil? %>
-    <% @events.each do |@event|%>
-      <% if @event.future_date?%>
-        <li><%= link_to "#{@event.name} - #{@event.category.name} - #{@event.datetime}", event_path(@event) %></li>
-      <% end %>
-    <% end %>
-  <% end %>
+  <%= link_to_events(@future_events) %>
 </ol>
 
 <h2> Past Events </h2>
 
 <ol>
-  <% unless @events.nil? %>
-    <% @events.each do |@event|%>
-        <% if !@event.future_date?%>
-            <li><%= link_to "#{@event.name} - #{@event.category.name} - #{@event.datetime}", event_path(@event) %></li>
-        <% end %>
-    <% end %>
-  <% end %>
+  <%= link_to_events(@past_events) %>
 </ol>
