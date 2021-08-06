@@ -1,6 +1,12 @@
 
 
-Has an admin who can create events and keep track of participants. A user can add and remove events on their agenda.   They should be able to filter their events to exclude past events and order events chronologically.  There are categories that events can belong to which can help the user identify whether the event would be of interest.  Ex: Category could be Music: Rap, or Literature: Science Fiction, etc.  Users also have tickets which belongs to a status (standard, premium, vip) and has an optional expectations string that the user can enter.
+The simple Event Tracker has an admin who can create events and keep track of participants and a general user who can add and remove events on their agenda. Both types of users should be able to filter their events to exclude past events and order events chronologically.  There are categories that events can belong to which can help the user identify whether the it would be of interest.  Ex: Category could be Music: Rap, or Literature: Science Fiction, etc.  Users also have tickets which belongs to a status (standard, premium, vip) and has an optional expectations string that the user can enter.
+
+Demo:
+
+https://www.youtube.com/watch?v=sqkj5s6ppiI
+
+How to run:
 
 Can load this app by running rails s then navigatio to localhost:3000/signin
 
